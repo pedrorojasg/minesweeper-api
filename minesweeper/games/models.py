@@ -8,6 +8,9 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
+MIN_ROWS = 2
+MAX_ROWS = 100
+
 def get_secret() -> str:
     """
     Retorna an hexadecimal Secret, 12 chars length.
@@ -20,6 +23,16 @@ def get_secret() -> str:
 
 class Game(models.Model):
     """
+    Game Model, stores id, times, secret, owner and the Game data.
+    field_board is a rectangular matrix field that stores the structure of the field,
+    it indicates if a cell has a mine 'm' or not ''.
+    game_board is a rectangular matrix field that stores the current status of the
+    game borad, it indicates the status of each cell.
+    Possible state:
+    'u' => 'unknown'
+    '?' => 'user's question mark'
+    'f' => 'user's flag'
+    'x' => 'user's clicked cell'
     """
     STATUS_CHOICES = (
         ('started', 'started'),
@@ -47,30 +60,30 @@ class Game(models.Model):
         blank=True, null=True
     )
     rows = models.IntegerField(
-        _('rows'), validators=[MinValueValidator(2), MaxValueValidator(100)],
+        _('rows'), validators=[MinValueValidator(MIN_ROWS), MaxValueValidator(MAX_ROWS)],
         blank=True, null=False
     )
     cols = models.IntegerField(
-        _('cols'), validators=[MinValueValidator(2), MaxValueValidator(100)],
+        _('cols'), validators=[MinValueValidator(MIN_ROWS), MaxValueValidator(MAX_ROWS)],
         blank=True, null=False
     )
     mines = models.IntegerField(
         _('mines'), validators=[MinValueValidator(1), MaxValueValidator(9900)],
         blank=True, null=False
     )
-    field = ArrayField(
+    field_board = ArrayField(
         ArrayField(
             models.CharField(max_length=1, blank=True, null=False),
-            size=100,
+            size=MAX_ROWS,
         ),
-        size=100,
+        size=MAX_ROWS,
     )
     game_board = ArrayField(
         ArrayField(
             models.CharField(max_length=1, blank=True, null=False),
-            size=100,
+            size=MAX_ROWS,
         ),
-        size=100,
+        size=MAX_ROWS,
     )
 
     class Meta:
