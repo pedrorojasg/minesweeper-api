@@ -14,6 +14,23 @@ class GameListCreateView(generics.ListCreateAPIView):
 
     POST fields:
     rows(int)[opt], cols(int)[opt], mines(int)[opt], name(str) [opt].
+
+    Data structure:
+    {
+        "id": uuid,
+        "owner": user_id or null,
+        "created_time": datetime[str],
+        "last_update_time": datetime[str],
+        "finished_time": null or datetime[str],,
+        "secret": str,
+        "status": "started" or "won" or "lost,
+        "rows": int,
+        "cols": int,
+        "mines": int,
+        "field_board": Array[Array[str]],
+        "game_board": Array[Array[str]],
+        "name": ""
+    }
     """
     serializer_class = GameSerializer
 

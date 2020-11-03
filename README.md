@@ -51,3 +51,90 @@ Get detail of a game.
 Save game status.
 
 fields: board_game(array), name(str) [opt].
+
+## Data structure
+Game:
+{
+    "id": uuid,
+    "owner": user_id or null,
+    "created_time": datetime[str],
+    "last_update_time": datetime[str],
+    "finished_time": null or datetime[str],,
+    "secret": str,
+    "status": "started" or "won" or "lost,
+    "rows": int,
+    "cols": int,
+    "mines": int,
+    "field_board": Array[Array[str]],
+    "game_board": Array[Array[str]],
+    "name": ""
+}
+
+
+Example:
+{
+    "id": "f0b96dfe-8fe8-4b8b-8cf1-6e664fed63a5",
+    "owner": null,
+    "created_time": "2020-11-03T15:37:24.890257-06:00",
+    "last_update_time": "2020-11-03T15:37:24.917880-06:00",
+    "finished_time": null,
+    "secret": "A24F3926C10B",
+    "status": "started",
+    "rows": 4,
+    "cols": 4,
+    "mines": 5,
+    "field_board": [
+        [
+            "m",
+            "",
+            "",
+            "m"
+        ],
+        [
+            "",
+            "m",
+            "",
+            ""
+        ],
+        [
+            "",
+            "",
+            "",
+            ""
+        ],
+        [
+            "",
+            "m",
+            "",
+            "m"
+        ]
+    ],
+    "game_board": [
+        [
+            "",
+            "",
+            "",
+            ""
+        ],
+        [
+            "",
+            "",
+            "",
+            ""
+        ],
+        [
+            "",
+            "",
+            "",
+            ""
+        ],
+        [
+            "",
+            "",
+            "",
+            ""
+        ]
+    ],
+    "name": ""
+}
+
