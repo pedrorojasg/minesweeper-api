@@ -1,1 +1,1 @@
-web: gunicorn minesweeper.minesweeper.wsgi_heroku --log-file -
+web: gunicorn minesweeper.wsgi_heroku --log-file -
