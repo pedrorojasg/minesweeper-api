@@ -27,9 +27,9 @@ class Game(models.Model):
     field_board is a rectangular matrix field that stores the structure of the field,
     it indicates if a cell has a mine 'm' or not ''.
     game_board is a rectangular matrix field that stores the current status of the
-    game borad, it indicates the status of each cell.
+    game board, it indicates the status of each cell and user's plays.
     Possible state:
-    'u' => 'unknown'
+    '' => 'non played cell'
     '?' => 'user's question mark'
     'f' => 'user's flag'
     'x' => 'user's clicked cell'
@@ -38,6 +38,16 @@ class Game(models.Model):
         ('started', 'started'),
         ('lost', 'lost'),
         ('won', 'won'),
+    )
+    FIELD_CELL_CHOICES = (
+        ('', ''),
+        ('m', 'm'),
+    )
+    PLAY_CELL_CHOICES = (
+        ('', ''), # 'non played cell'
+        ('?', '?'), # 'user's question mark'
+        ('f', 'f'), # 'user's flag'
+        ('x', 'x'), # 'user's clicked cell'
     )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -48,6 +58,10 @@ class Game(models.Model):
         max_length=12,
         null=False, unique=True,
         default=get_secret
+    )
+    name = models.CharField(
+        max_length=25,
+        blank=True, null=False,
     )
     status = models.CharField(
         _('status'), max_length=10,
@@ -73,14 +87,16 @@ class Game(models.Model):
     )
     field_board = ArrayField(
         ArrayField(
-            models.CharField(max_length=1, blank=True, null=False),
+            models.CharField(
+                choices=FIELD_CELL_CHOICES, max_length=1, blank=True, null=False),
             size=MAX_ROWS,
         ),
         size=MAX_ROWS,
     )
     game_board = ArrayField(
         ArrayField(
-            models.CharField(max_length=1, blank=True, null=False),
+            models.CharField(
+                choices=PLAY_CELL_CHOICES, max_length=1, blank=True, null=False),
             size=MAX_ROWS,
         ),
         size=MAX_ROWS,
