@@ -13,3 +13,38 @@ The following is a list of items (prioritized from most important to least impor
 + Ability to start a new game and preserve/resume the old ones
 + Ability to select the game parameters: number of rows, columns, and mines
 + Ability to support multiple users/accounts
+
+Decisions taken and important notes:
++ One model Game, that stores the board in 2 layers.
+
+field_board => the first layer, is a matrix that stores where are the mines.
+game_board => the second layer, is a matrix that stores the current visible board with all the plays (discovered cells, flags, and question marks.)
++ Time tracking in the UI can be calculated using the created_time value.
++ I include validations.
++ In the future, the /games/ endpoint could return the list of games of a logged user.
+
+API URL demo:
+https://minesweeperdemo.herokuapp.com/
+
+DOCUMENTATION:
+2 options, browsable API or text documentation.
+
+Browsable API:
+Use a browser and query each endpoint for more info.
+
+TEXT documentation.
+Endpoints:
+
+[POST] /games/
+fields: rows(int)[opt], cols(int)[opt], mines(int)[opt], name(str) [opt].
+Create a new game.
+
+[GET] /games/
+List games.
+
+[GET] /games/<uuid>/
+Get detail of a game.
+
+[PATCH] /games/<uuid>/
+fields: board_game(array), name(str) [opt].
+Save game status.
