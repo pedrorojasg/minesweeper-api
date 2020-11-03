@@ -1,7 +1,7 @@
 import django_heroku
 import dj_database_url
 
-from cirbox.settings.base_settings import *
+from minesweeper.settings.base_settings import *
 from datetime import timedelta
 
 # SECURITY WARNING: don't run with debug turned on in production!
