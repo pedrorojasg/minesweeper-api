@@ -37,8 +37,9 @@ Use a browser and query each endpoint for more info.
 Endpoints:
 
 ### [POST] /games/
-fields: rows(int)[opt], cols(int)[opt], mines(int)[opt], name(str) [opt].
 Create a new game.
+
+fields: rows(int)[opt], cols(int)[opt], mines(int)[opt], name(str) [opt].
 
 ### [GET] /games/
 List games.
@@ -47,5 +48,6 @@ List games.
 Get detail of a game.
 
 ### [PATCH] /games/<uuid>/
-fields: board_game(array), name(str) [opt].
 Save game status.
+
+fields: board_game(array), name(str) [opt].
