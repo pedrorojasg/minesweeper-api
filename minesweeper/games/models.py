@@ -9,7 +9,10 @@ from django.utils.translation import ugettext_lazy as _
 
 
 MIN_ROWS = 2
-MAX_ROWS = 100
+MAX_ROWS = 25
+MIN_MINES = 1
+MAX_MINES = int((MAX_ROWS**2)*0.5)
+
 
 def get_secret() -> str:
     """
@@ -66,6 +69,7 @@ class Game(models.Model):
     status = models.CharField(
         _('status'), max_length=10,
         choices=STATUS_CHOICES,
+        default='started',
         blank=True, null=False
     )
     owner = models.ForeignKey(
@@ -82,7 +86,7 @@ class Game(models.Model):
         blank=True, null=False
     )
     mines = models.IntegerField(
-        _('mines'), validators=[MinValueValidator(1), MaxValueValidator(9900)],
+        _('mines'), validators=[MinValueValidator(MIN_MINES), MaxValueValidator(MAX_MINES)],
         blank=True, null=False
     )
     field_board = ArrayField(
