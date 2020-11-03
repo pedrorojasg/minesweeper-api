@@ -15,7 +15,7 @@ from whitenoise import WhiteNoise
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_PATH = os.path.join(BASE_PATH, "static_deployment")
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cirbox.settings.heroku')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'minesweeper.settings.production')
 
 application = get_wsgi_application()
 application = WhiteNoise(application, root=STATIC_PATH)
