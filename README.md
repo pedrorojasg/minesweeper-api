@@ -50,9 +50,9 @@ game_board => the second layer, is a matrix that stores the current visible boar
 + Run Django development server.
 `python manage.py runserver`
 
-
 ## Run tests:
-
++ Run Django test suite.
+`python manage.py test`
 
 ## API URL demo:
 https://minesweeperdemo.herokuapp.com/
