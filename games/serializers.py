@@ -4,11 +4,12 @@ from typing import Dict, List, Tuple
 from django.apps import apps
 from rest_framework import serializers
 
+from games import utils
 from games.models import Game
 
-DEFAULT_ROWS = 8
-DEFAULT_COLS = 8
-DEFAULT_MINES = 10
+DEFAULT_ROWS = utils.DEFAULT_ROWS
+DEFAULT_COLS = utils.DEFAULT_COLS
+DEFAULT_MINES = utils.DEFAULT_MINES
 
 def get_init_boards(rows: int, cols: int, mines: int) -> Tuple[List, List]:
     field_board: List = []

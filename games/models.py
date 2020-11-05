@@ -7,11 +7,12 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from games import utils
 
-MIN_ROWS = 2
-MAX_ROWS = 25
-MIN_MINES = 1
-MAX_MINES = int((MAX_ROWS**2)*0.5)
+MIN_ROWS = utils.MIN_ROWS
+MAX_ROWS = utils.MAX_ROWS
+MIN_MINES = utils.MIN_MINES
+MAX_MINES = utils.MAX_MINES
 
 
 def get_secret() -> str:
