@@ -29,11 +29,12 @@ game_board => the second layer, is a matrix that stores the current visible boar
 ### Symbols:
 + '': Empty cells in field_board. Unclicked cells in game_board.
 + 'm': Mine in field_board.
++ 'x': Clicked and/or revealed cell.
 + 'f': flag in game_board.
 + '?': Question mark in game_board.
 
 ## Python version:
-3.7
+3.7.9
 
 ## Run project in local:
 + Clone repo.

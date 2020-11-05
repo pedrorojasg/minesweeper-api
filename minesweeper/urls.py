@@ -25,7 +25,7 @@ schema_view = get_schema_view(
         title="Minesweeper backend REST API",
         default_version='v1',
         description="Minesweeper backend REST API, imported from Django project.",
-        contact=openapi.Contact(email="pedrorojas.gavidia@cirbox.es"),
+        contact=openapi.Contact(email="pedrorojas.gavidia@gmail.com"),
     ),
     public=True,
     #permission_classes=(permissions.AllowAny,),
