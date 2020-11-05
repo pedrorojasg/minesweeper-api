@@ -17,9 +17,27 @@ from django.conf import settings
 from django.urls import path
 from django.conf.urls import include, url
 from django.contrib import admin
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Minesweeper backend REST API",
+        default_version='v1',
+        description="Minesweeper backend REST API, imported from Django project.",
+        contact=openapi.Contact(email="pedrorojas.gavidia@cirbox.es"),
+    ),
+    public=True,
+    #permission_classes=(permissions.AllowAny,),
+)
 
 
 urlpatterns = [
     path('games/', include('games.urls')),
     path('admin/', admin.site.urls),
+    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    url(
+        r'^swagger(?P<format>\.json|\.yaml)$',
+        schema_view.without_ui(cache_timeout=0), name='schema-json'
+    ),
 ]

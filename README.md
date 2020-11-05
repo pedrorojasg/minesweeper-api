@@ -1,7 +1,7 @@
 # minesweeper-api
 Minesweeper REST API, developed using Django, Django REST Framewokr and Python
 
-Target:
+## Goal:
 The following is a list of items (prioritized from most important to least important) we wish to see:
 
 + Design and implement a documented RESTful API for the game (think of a mobile app for your API)
@@ -15,22 +15,53 @@ The following is a list of items (prioritized from most important to least impor
 + Ability to support multiple users/accounts
 
 ### Decisions taken and important notes:
++ The API structure is scalable and follows the good practices of url names, data structures and documentation.
 + One model Game, that stores the board in 2 layers.
 
 field_board => the first layer, is a matrix that stores where are the mines.
-game_board => the second layer, is a matrix that stores the current visible board with all the plays (discovered cells, flags, and question marks.)
+game_board => the second layer, is a matrix that stores the current visible board with all the plays (Unclicked cells, discovered cells, flags, and question marks.)
 + Time tracking in the UI can be calculated using the created_time value.
 + I include validations.
++ I include unit tests.
 + In the future, the /games/ endpoint could return the list of games of a logged user.
++ The configuration is handled in a specific module that contains a common configuration file, one file for the development environment and one for the production environment.
++ The deploy is on Heroku.
++ I did not have time to finish the frontend interface for work, I will continue working on it over the weekend.
+
+### Symbols:
++ '': Empty cells in field_board. Unclicked cells in game_board.
++ 'm': Mine in field_board.
++ 'f': flag in game_board.
++ '?': Question mark in game_board.
+
+## Run project in local:
++ Clone repo.
++ Locate at repo root folder.
+`cd minesweeper-api`
++ Create a virtual environment.
++ Install dependencies:
+`pip install -r requirenents.txt`
++ Create a postgres database in local.
++ Create a file ".envdev" for set local environment variables.
+`touch .envdev`
++ Configure the file using the params in .envexample file.
++ Run migrations.
+`python manage.py migrate`
++ Run Django development server.
+`python manage.py runserver`
+
+
+## Run tests:
+
 
 ## API URL demo:
 https://minesweeperdemo.herokuapp.com/
 
-## DOCUMENTATION:
-2 options, browsable API or text documentation.
+# DOCUMENTATION:
+2 options: swagger or text documentation.
 
-## Browsable API:
-Use a browser and query each endpoint for more info.
+## Swagger docs:
+https://minesweeperdemo.herokuapp.com/docs/
 
 # TEXT documentation.
 
