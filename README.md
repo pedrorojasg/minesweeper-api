@@ -2,8 +2,6 @@
 Minesweeper REST API, developed using Django, Django REST Framewokr and Python
 
 ## Goal:
-The following is a list of items (prioritized from most important to least important) we wish to see:
-
 + Design and implement a documented RESTful API for the game (think of a mobile app for your API)
 + When a cell with no adjacent mines is revealed, all adjacent squares will be revealed (and repeat)
 + Ability to 'flag' a cell with a question mark or red flag
@@ -33,6 +31,9 @@ game_board => the second layer, is a matrix that stores the current visible boar
 + 'm': Mine in field_board.
 + 'f': flag in game_board.
 + '?': Question mark in game_board.
+
+## Python version:
+3.7
 
 ## Run project in local:
 + Clone repo.
