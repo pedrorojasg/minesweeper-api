@@ -77,10 +77,10 @@ fields: rows(int)[opt], cols(int)[opt], mines(int)[opt], name(str) [opt].
 ### [GET] /games/
 List games.
 
-### [GET] /games/<uuid>/
+### [GET] /games/:uuid/
 Get detail of a game.
 
-### [PATCH] /games/<uuid>/
+### [PATCH] /games/:uuid/
 Save game status.
 
 fields: board_game(array), name(str) [opt].
